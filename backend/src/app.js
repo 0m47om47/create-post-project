@@ -3,9 +3,11 @@ const app=express();
 const multer=require('multer');
 const uploadFile=require('../services/storage.service.js');
 const postModel=require("./models/post.model.js")
+const cors=require("cors")
 
 app.use(express.json());
 const upload=multer({storage:multer.memoryStorage() })
+app.use(cors())
 
 app.post("/create-post",upload.single("image"),async(req,res)=>{
     console.log(req.body);
